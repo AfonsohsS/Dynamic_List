@@ -32,13 +32,17 @@ struct ContentView: View {
         NavigationView {
             //Building a dynamic List based on Array
             List(powerList) { power in
-                HStack {
-                    Text(power.name)
-                    if self.showPowerType {
-                        Text(power.type)
-                            .foregroundColor(power.color)
-                    }
-                }.padding(.horizontal)
+                
+                //Link to DetailView
+                NavigationLink(destination: DetailView(power: power)) {
+                    HStack {
+                        Text(power.name)
+                        if self.showPowerType {
+                            Text(power.type)
+                                .foregroundColor(power.color)
+                        }
+                    }.padding(.horizontal)
+                }
             }
                 //Navigation Modifiers
                 .navigationBarTitle(Text("Super Powers"))
@@ -63,6 +67,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environment(\.colorScheme, .dark)
+//            .environment(\.colorScheme, .dark)
     }
 }
